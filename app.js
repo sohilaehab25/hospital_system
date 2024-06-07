@@ -2,7 +2,6 @@ var express = require ('express');
 var session = require ('express-session');
 var cookie = require ('cookie-parser');
 var path = require ('path');
-var ejs= require ('ejs');
 var multer = require('multer');
 var path = require ('path');
 var async = require ('async');
@@ -13,6 +12,7 @@ var  sweetalert = require('sweetalert2');
 var mongoose = require('mongoose');
 require('dotenv').config();
 const userRouter = require('./routers/userrouter');
+const PatientRouter = require('./routers/PatientRouter')
 
 const server = express();
 
@@ -50,20 +50,7 @@ server.use(express.json());
 
 //end routing
 server.use(userRouter)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+server.use(PatientRouter)
 
 
 //Not Found mw
