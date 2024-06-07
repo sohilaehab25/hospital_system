@@ -6,10 +6,15 @@ autoIncrement.initialize(mongoose.connection);
 // Visit Sub-schema
 const VisitSchema = new Schema({
     visitDate: { type: Date, required: true },
-    doctorId: { type: String, required: true },
+    doctors: [{
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Doctor'
+    }],
     notes: { type: String },
     prescriptions: [{ type: String }]
-} ,{ _id: false });
+}, { _id: false });
+
 
 
 // MedicalInfo Sub-schema
