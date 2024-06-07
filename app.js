@@ -12,7 +12,9 @@ var  sweetalert = require('sweetalert2');
 var mongoose = require('mongoose');
 require('dotenv').config();
 const userRouter = require('./routers/userrouter');
-const PatientRouter = require('./routers/PatientRouter')
+const PatientRouter = require('./routers/PatientRouter');
+const doctorRuter = require('./routers/DoctorRouter');
+const departmentRouter = require('./routers/DepartmentRouter');
 
 const server = express();
 
@@ -51,6 +53,8 @@ server.use(express.json());
 //end routing
 server.use(userRouter)
 server.use(PatientRouter)
+server.use(doctorRuter)
+server.use(departmentRouter)
 
 
 //Not Found mw

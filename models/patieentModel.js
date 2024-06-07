@@ -11,6 +11,11 @@ const VisitSchema = new Schema({
         required: true,
         ref: 'Doctor'
     }],
+    departments:[{
+        type:Schema.Types.ObjectId,
+        ref:'Department',
+        required:true
+    }],
     notes: { type: String },
     prescriptions: [{ type: String }]
 }, { _id: false });

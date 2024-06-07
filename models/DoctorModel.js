@@ -11,14 +11,13 @@ const AddressSchema = new Schema({
 },{ _id: false });
 
 const DoctorSchema = new Schema({
-    fullBame: { type: String, required: true },
+    fullname: { type: String, required: true },
     specialty: { type: String, required: true },
     address: { type: AddressSchema },
 
     department:[{ 
         type: Schema.Types.ObjectId,
          ref: 'Department' ,  
-        required: true
     }] ,
     patients: [{
          type: Schema.Types.ObjectId, 
@@ -26,5 +25,14 @@ const DoctorSchema = new Schema({
      }] 
 
 });
+
+DoctorSchema.plugin(autoIncrement.plugin, {
+    model: 'DoctorSchema',
+    field: 'doctorId',
+    startAt: 1,
+    incrementBy: 1
+});
+
+
 
 module.exports = mongoose.model('DoctorSchema', DoctorSchema)
