@@ -1,11 +1,11 @@
 const Doctor = require('../models/DoctorModel');
+const patient = require('../models/patientModel');
+const Department = require('../models/DepartmentModel');
+
+
 
 // Add new doctor
 exports.AddDoctor = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
 
     const { fullname, specialty, address, department, patients } = req.body;
 
@@ -29,3 +29,6 @@ exports.AddDoctor = (req, res, next) => {
             res.status(500).json({ error: error.message });
         });
 };
+
+
+//

@@ -9,7 +9,7 @@ const VisitSchema = new Schema({
     doctors: [{
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'Doctor'
+        ref: 'DoctorSchema'
     }],
     departments:[{
         type:Schema.Types.ObjectId,

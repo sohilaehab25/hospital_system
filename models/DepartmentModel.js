@@ -3,17 +3,18 @@ const Schema = mongoose.Schema;
 const autoIncrement = require('@alec016/mongoose-autoincrement');
 autoIncrement.initialize(mongoose.connection);
 
-const Patient = require('./patieentModel');
+const Patient = require('./patientModel');
 const Doctors = require('./DoctorModel');
 
 const DepartmentSchema = new Schema({
     name:{
         type:String,
-        required: true
+        required: true,
+        unique: true,
     },
-    Doctors:[{
+    doctors:[{
         type: Schema.Types.ObjectId, 
-        ref: 'Doctors'
+        ref: 'DoctorSchema'
      }] ,
      patients:[{
         type:Schema.Types.ObjectId,

@@ -6,5 +6,18 @@ const DepartmentValidation =require('../modelware/validation/DepartmentValidatio
 
 Router.route('/departments')
 .post(DepartmentValidation.Department ,DepartmentController.addDepartment)
+.get(DepartmentController.getAllDepartments)
+
+Router.route('/department/doctors/:_id')
+.get(DepartmentController.getDoctorInTheDepartment)
+
+Router.route('/department/patients/:_id')
+.get(DepartmentController.getPatientInTheDepartment)
+
+Router.route('/department/:_id')
+.get(DepartmentController.getDepartmentById)
+.delete(DepartmentController.deleteDepartmentById)
+.put(DepartmentController.updateDepartment)
+
 
 module.exports = Router    

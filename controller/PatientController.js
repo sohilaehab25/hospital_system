@@ -1,5 +1,4 @@
-const MailMessage = require('nodemailer/lib/mailer/mail-message');
-const PatientSchema = require('../models/patieentModel');
+const PatientSchema = require('../models/patientModel');
 
 
 
