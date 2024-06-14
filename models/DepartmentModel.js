@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const autoIncrement = require('@alec016/mongoose-autoincrement');
-autoIncrement.initialize(mongoose.connection);
-
 const Patient = require('./patientModel');
 const Doctors = require('./DoctorModel');
 

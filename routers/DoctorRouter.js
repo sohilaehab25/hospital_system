@@ -8,6 +8,11 @@ Router.route('/doctors')
     .post(DoctorValidator.validateDoctor, DoctorController.AddDoctor )
 
 
+Router.route('/doctor/:id')
+.get(DoctorController.getDoctorById)
+
+
+
 
 module.exports = Router    
 

@@ -44,15 +44,14 @@ exports.addDepartment = async (req, res, next) => {
 
 exports.getPatientInTheDepartment= async (req, res) =>{
     try {
-        const department = await Department.findById(req.params._id).populate('patients')
+        const department = await Department.findById(req.params._id).populate('patients');
         if (!department) {
             return res.status(404).json({ error: 'Department not found' });
         }
-        res.status(200).json(department.patients)
-        
+        res.status(200).json(department.patients);0
+        console.log(department.patients)
     } catch (error) {
         res.status(500).json({ error: error.message });
-        
     }
 };
 

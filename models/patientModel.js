@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const autoIncrement = require('@alec016/mongoose-autoincrement');
-autoIncrement.initialize(mongoose.connection);
 
 // Visit Sub-schema
 const VisitSchema = new Schema({
@@ -74,16 +72,14 @@ const PatientSchema = new Schema({
         type: MedicalInfoSchema,
         required: true
     },
-    visits: [VisitSchema] //more than one visits
+    visits: [VisitSchema] ,//more than one visits
+    department:{
+        type:Schema.Types.ObjectId,
+        ref:"Department"
+    }
+
 });
 
 
-
-PatientSchema.plugin(autoIncrement.plugin, {
-    model: 'Patient',
-    field: 'patientId',
-    startAt: 1,
-    incrementBy: 1
-});
 
 module.exports = mongoose.model('Patient', PatientSchema);

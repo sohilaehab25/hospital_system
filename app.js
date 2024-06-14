@@ -15,6 +15,8 @@ const userRouter = require('./routers/userrouter');
 const PatientRouter = require('./routers/PatientRouter');
 const doctorRuter = require('./routers/DoctorRouter');
 const departmentRouter = require('./routers/DepartmentRouter');
+const notification = require('./routers/notificationRouter');
+const Appointment = require('./routers/appointmentRouter')
 
 const server = express();
 
@@ -55,6 +57,8 @@ server.use(userRouter)
 server.use(PatientRouter)
 server.use(doctorRuter)
 server.use(departmentRouter)
+server.use(notification)
+server.use(Appointment)
 
 
 //Not Found mw

@@ -5,7 +5,7 @@ var randomToken = require("random-token");
 
 
 exports.insertuser = (req, res, next) => {
-    const {username, email, password, status, call_back } = req.body;
+    const { email, password, username } = req.body;
     console.log(req.body);
     userschema.findOne({email}).exec() 
         .then(existingUser => {
@@ -17,8 +17,6 @@ exports.insertuser = (req, res, next) => {
                 username: username,
                 email: email,
                 password: password,
-                status: status,
-                call_back: call_back
             });
         
             return newUser.save();

@@ -22,28 +22,4 @@ exports.Patient = [
     body('visits.*.notes').optional().isString().withMessage('Notes must be a string'),
     body('visits.*.prescriptions').optional().isArray().withMessage('Prescriptions must be an array of strings'),
 
-    // // Custom validation logic for doctors and departments
-    // async (req, res, next) => {
-    //     const visits = req.body.visits || [];
-
-    //     try {
-    //         for (const visit of visits) {
-    //             const { doctors, departments } = visit;
-
-    //             for (const doctorId of doctors) {
-    //                 const doctor = await Doctor.findById(doctorId).populate('Department');
-    //                 const doctorDepartments = doctor.Department.map(dept => dept.toString());
-    //                 const visitDepartments = Department.map(dept => dept.toString());
-
-    //                 const isDoctorInDepartments = visitDepartments.some(dept => doctorDepartments.includes(dept));
-    //                 if (!isDoctorInDepartments) {
-    //                     return res.status(400).json({ error: 'All doctors must belong to the specified departments.' });
-    //                 }
-    //             }
-    //         }
-    //         next();
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
 ];

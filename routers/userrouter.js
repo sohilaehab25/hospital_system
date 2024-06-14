@@ -3,11 +3,11 @@ const router = express.Router();
 
 const{body,param, query, validationResult} = require('express-validator');
 const UserController = require('../controller/userController');
-const { UpdateValidator, insertValidator} = require('../modelware/validation/uservalidation');
+const {UserValidator} = require('../modelware/validation/uservalidation');
 
 router
 router.route('/user')
-    .post(insertValidator, UserController.insertuser)
+    .post(UserValidator, UserController.insertuser)
     .get(UserController.getAllUSers);
 
 router.route('/user/:_id')
