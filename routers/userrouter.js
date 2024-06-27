@@ -2,14 +2,20 @@ const express = require('express');
 const router = express.Router();
 
 const{body,param, query, validationResult} = require('express-validator');
-const UserController = require('../controller/userController');
+const AuthValidatoer=require('../controller/authController');
+const userController = require('../controller/AdminController')
 const {UserValidator} = require('../modelware/validation/uservalidation');
 
-router
+//authontication
+router.route('/signin').post(UserValidator, AuthValidatoer.signIn);
+router.route('/login').post(AuthValidatoer.login);
+
+
 router.route('/user')
-    .post(UserValidator, UserController.insertuser)
-    .get(UserController.getAllUSers);
+    .get(userController.getAllUSers);
 
 router.route('/user/:_id')
-    .get(UserController.getUserId);   
+    .get(userController.getUserId);   
+
+
 module.exports = router;   
