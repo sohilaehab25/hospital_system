@@ -1,4 +1,5 @@
 const PatientSchema = require('../models/patientModel');
+const { validationResult } = require('express-validator');
 
 
 
@@ -34,6 +35,7 @@ exports.AddPatient = (req, res, next) => {
         });
 };
 
+
 //get all patient
 exports.GetAllPatient = (req,res,next)=>{
     PatientSchema.find({})
@@ -46,7 +48,7 @@ exports.GetAllPatient = (req,res,next)=>{
 
 //get patient by id
 exports.GetpatientById = (req, res, next) => {
-    PatientSchema.findOne({patientId:req.params.id})
+    PatientSchema.findOne({_id:req.params._id})
     .then((patient)=>{
         if(!patient){
             res.status(404).json({massage:'Patient not found'})
@@ -55,6 +57,8 @@ exports.GetpatientById = (req, res, next) => {
     })
     .catch((error)=>{next(error)});
 }
+
+
 
 // Update patient
 exports.UpdatePatient = async (req, res, next) => {
@@ -66,7 +70,8 @@ exports.UpdatePatient = async (req, res, next) => {
     const updatedPatientData = req.body;
 
     try {
-        let patientToUpdate = await PatientSchema.findOne({ patientId: req.params.id });
+        let patientToUpdate = await PatientSchema.findOne({ _id: req.params._id });
+        console.log(req.params._id)
         if (!patientToUpdate) {
             return res.status(404).json({ message: 'There is no patient with this ID' });
         }
@@ -84,7 +89,7 @@ exports.UpdatePatient = async (req, res, next) => {
 
 // Delete patient by id
 exports.DeletePatientById = (req, res, next) => {
-    PatientSchema.findOneAndDelete({ patientId: req.params.id })
+    PatientSchema.findOneAndDelete({ _id: req.params._id })
         .then((patient) => {
             if (!patient) {
                 return res.status(404).json({ message: 'Patient not found' });

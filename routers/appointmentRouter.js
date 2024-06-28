@@ -1,15 +1,17 @@
-const AppointmentController = require('../controller/appointmentController');
 const express = require('express');
 const Router = express.Router();
 
+const AppointmentController = require('../controller/appointmentController');
+const {restrictedTo, protect} = require('../modelware/authorizationmiddlaware')
+
 Router.route('/appointment')
-.get(AppointmentController.getAllAppointments)
-.post(AppointmentController.createAppointment)
+.get(protect,restrictedTo('admin'),AppointmentController.getAllAppointments)
+.post(protect,restrictedTo('admin','Patient'),AppointmentController.createAppointment)
 
 
 Router.route('/appointment/:id')
-.get(AppointmentController.getAppointmentById)
-.put(AppointmentController.UpdateAppointment)
-.delete(AppointmentController.DeleteAppointment)
+.get(protect,restrictedTo('admin','Patient'),AppointmentController.getAppointmentById)
+.put(protect,restrictedTo('admin','Patient'),AppointmentController.UpdateAppointment)
+.delete(protect,restrictedTo('admin','Patient'),AppointmentController.DeleteAppointment)
 
 module.exports = Router    

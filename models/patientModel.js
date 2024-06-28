@@ -5,14 +5,12 @@ const Schema = mongoose.Schema;
 const VisitSchema = new Schema({
     visitDate: { type: Date, required: true },
     doctors: [{
-        type: Schema.Types.ObjectId,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'DoctorSchema'
     }],
     departments:[{
-        type:Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Department',
-        required:true
     }],
     notes: { type: String },
     prescriptions: [{ type: String }]
@@ -72,9 +70,9 @@ const PatientSchema = new Schema({
         type: MedicalInfoSchema,
         required: true
     },
-    visits: [VisitSchema] ,//more than one visits
+    visits: [VisitSchema] ,
     department:{
-        type:Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"Department"
     }
 

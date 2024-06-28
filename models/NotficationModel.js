@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const notificationSchema = mongoose.Schema({
     userId:{
         type: mongoose.Schema.Types.ObjectId, 
-        ref:'users',
+        ref:'User',
         required:true
     },
     massage:{

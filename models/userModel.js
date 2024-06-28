@@ -1,5 +1,6 @@
 const { Timestamp } = require('mongodb');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const validator = require('validator');
 const mongoose = require('mongoose');
 
@@ -45,9 +46,12 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: [true, 'Your role is required'],
-        enum: ['patient', 'admin', 'worker'],
+        enum: ['patient', 'admin', 'doctor'],
         default: 'patient'
-    }
+    },
+    passwordChangeAt: Date,
+    passwordResetToken: String,
+    passwordResetExpired: Date,
 }, {
     timestamps: true  // Enable timestamps
 });
@@ -66,8 +70,26 @@ userSchema.pre('save', async function(next) {
     next();
 });
 
+//copare confirm password and password
 userSchema.methods.correctpassword = async function (candidatepassword, userpassword) {
     return await bcrypt.compare(candidatepassword, userpassword)
 };
+
+
+//reset token for forget password
+userSchema.methods.createPasswordResetToken = function (){
+    const resetToken = crypto.randomBytes(32).toString('hex');
+   this.passwordResetToken =  crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+    console.log(resetToken, this.passwordResetToken)
+
+    this.passwordResetExpired = Date.now() + 10 * 60 * 1000;
+    return resetToken;
+};
+
+
+
 
 module.exports = mongoose.model('User', userSchema);

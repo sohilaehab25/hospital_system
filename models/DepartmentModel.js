@@ -13,10 +13,10 @@ const DepartmentSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: 'DoctorSchema'
      }] ,
-     patients:[{
-        type:Schema.Types.ObjectId,
-        refer:'Patient'
-     }]
+     patients:{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Patient', 
+        required: true
+    }
     
 })
 module.exports = mongoose.model('Department', DepartmentSchema)

@@ -72,7 +72,7 @@ exports.getAllDepartments = async (req, res, next) => {
     try {
         const departments = await Department.find({})
             .populate('doctors') // Populate the 'doctors' field with actual doctor documents
-            .populate('patients'); // Populate the 'patients' field with actual patient documents
+            .populate('patients')
 
         res.status(200).json(departments);
     } catch (error) {

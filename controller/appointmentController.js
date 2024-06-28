@@ -74,8 +74,8 @@ exports.getAllAppointments =  async (req, res) => {
   exports.DeleteAppointment = async (req, res) => {
     try {
       const appointment = await Appointment.findByIdAndDelete(req.params.id);
-      if (!appointment) return res.status(404).send();
-      res.status(200).send(appointment);
+      if (!appointment) return res.status(404).json({massage:"there is no appoinmrnt"});
+      res.status(200).json({massage:"appointment deleted successfully",appointment});
     } catch (error) {
       res.status(500).send(error);
     }

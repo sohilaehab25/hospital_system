@@ -13,10 +13,13 @@ const DoctorSchema = new Schema({
     specialty: { type: String, required: true },
     address: { type: AddressSchema },
 
-    patients: [{
-         type: Schema.Types.ObjectId, 
-        ref: 'Patient'
-     }] 
+    patients:{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Patient', 
+    }, 
+     department:[{ 
+        type: mongoose.Schema.Types.ObjectId, ref: 'Department' , 
+    }] ,
+
 
 });
 

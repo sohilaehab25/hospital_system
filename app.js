@@ -11,12 +11,14 @@ var expressValidator = require ('express-validator');
 var  sweetalert = require('sweetalert2');
 var mongoose = require('mongoose');
 require('dotenv').config();
+
+const authonticationRouter = require('./routers/authonticationRouter')
 const userRouter = require('./routers/userrouter');
 const PatientRouter = require('./routers/PatientRouter');
 const doctorRuter = require('./routers/DoctorRouter');
 const departmentRouter = require('./routers/DepartmentRouter');
 const notification = require('./routers/notificationRouter');
-const Appointment = require('./routers/appointmentRouter')
+const Appointment = require('./routers/appointmentRouter');
 
 const server = express();
 
@@ -53,6 +55,7 @@ server.use(express.json());
 
 
 //end routing
+server.use(authonticationRouter)
 server.use(userRouter)
 server.use(PatientRouter)
 server.use(doctorRuter)
