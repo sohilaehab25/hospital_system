@@ -1,30 +1,108 @@
+Hospital Management System (HMS) API
+API endpoints for hospital management using Laravel
 
-Hospital Management System
+Overview
+The Hospital Management System (HMS) API provides a set of endpoints to manage hospital operations, appointments, departments, doctors, patients, and user authentication. This README file outlines the available endpoints, their functionalities, and installation instructions.
 
-Project Overview
+Endpoints
+Authentication
+POST /signup
+Create a new user account.
+POST /login
+Authenticate user credentials.
+Appointments
+GET /appointment
 
-The Hospital Management System is a comprehensive solution designed to manage various aspects of a hospital, including doctors, patients, and departments.
+Retrieve all appointments (Admin only).
+POST /appointment
 
-The system features authentication and authorization mechanisms to ensure secure access.
+Create a new appointment (Admin or Patient).
+GET /appointment/
 
-It includes an advanced appointment scheduling system, prescription management, role-based access control, and more.
+Get details of a specific appointment (Admin or Patient).
+PUT /appointment/
 
+Update a specific appointment (Admin or Patient).
+DELETE /appointment/
 
+Delete a specific appointment (Admin or Patient).
+Departments
+POST /departments
 
-Key Features
+Add a new department (Admin only).
+GET /departments
 
+Retrieve all departments (Admin only).
+GET /department/doctors/:_id
 
-##User Management:
+Retrieve doctors in a specific department (Admin only).
+GET /department/patients/:_id
 
-1-Doctors: Manage doctor profiles, specialties, and schedules.
+Retrieve patients in a specific department (Admin only).
+GET /department/:_id
 
-2-Patients: Register and maintain patient profiles and medical histories.
+Get details of a specific department (Admin only).
+DELETE /department/:_id
 
-3-Departments: Organize and manage hospital departments.
+Delete a specific department (Admin only).
+PUT /department/:_id
 
+Update a specific department (Admin only).
+Doctors
+POST /doctors
 
-###Authentication and Authorization:
+Add a new doctor (Admin only).
+GET /doctors
 
-1-Secure login and registration with role-based access control (RBAC).
+Retrieve all doctors (Admin only).
+GET /doctor/
 
-2-Differentiated access levels for admins, doctors, nurses, and patients.
+Get details of a specific doctor (Admin or Doctor).
+PUT /doctor/
+
+Update a specific doctor (Admin or Doctor).
+DELETE /doctor/
+
+Delete a specific doctor (Admin or Doctor).
+Patients
+POST /patients
+
+Add a new patient (Admin only).
+GET /patients
+
+Retrieve all patients (Admin only).
+GET /patient/:_id
+
+Get details of a specific patient (Admin or Patient).
+PUT /patient/:_id
+
+Update a specific patient (Admin or Patient).
+DELETE /patient/:_id
+
+Delete a specific patient (Admin or Patient).
+Users
+GET /user
+Retrieve all users (Admin only).
+GET /user/:_id
+Get details of a specific user (Admin only).
+Authentication and Authorization
+Authentication is required for most routes using JWT tokens (protect middleware).
+Different roles (admin, doctor, patient) have different levels of access (restrictedTo middleware).
+Installation
+Clone the repository:
+git clone https://github.com/your/repository.git
+
+onfigure environment variables: Copy .env.example to .env and update with your settings in backend.
+Install dependencies of backend:  --> npm install
+Run the development server: --> nodemon app.js
+
+Contributing
+Contributions are welcome! Follow these steps:
+
+Fork the repository.
+Create a new branch: git checkout -b feature/your-feature.
+Commit your changes: git commit -am 'Add new feature'.
+Push to the branch: git push origin feature/your-feature.
+Submit a PR (pull request).
+Contact
+For questions or feedback, contact sohila ehab at sohailaehab25@gmail.com or visit https://github.com/sohilaehab25.
